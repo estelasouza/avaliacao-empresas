@@ -17,3 +17,4 @@
 const Route = use('Route')
 
 Route.resource('empresa', 'EmpresaController').apiOnly()
+Route.resource('avaliacao', 'AvaliacaoController').apiOnly()

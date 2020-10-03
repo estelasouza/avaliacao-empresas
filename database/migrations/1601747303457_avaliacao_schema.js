@@ -7,6 +7,7 @@ class AvaliacaoSchema extends Schema {
   up () {
     this.create('avaliacaos', (table) => {
       table.increments()
+      table.integer('empresa_id').unsigned().references('empresa.id').notNullable()
       table.string('cargo').notNullable()
       table.integer('salario').notNullable()
       table.integer('ambiente_trabalho').notNullable()
