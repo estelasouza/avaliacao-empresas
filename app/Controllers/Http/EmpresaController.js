@@ -19,8 +19,8 @@ class EmpresaController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
-    const empresas = Empresa.all()
+  async index () {
+    const empresas = Empresa.query().with('avaliacao').fetch()
     // await empresas.load('avaliacao')
     return empresas
   }
@@ -56,8 +56,10 @@ class EmpresaController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
-      
     const empresa = await Empresa.findOrFail(params.id)
+    console.log(empresa.with('avaliacao').fetch())
+    empresa = await empresa.query().with('avaliacao').fetch()
+    // .findOrFail(params.empresa_id)
     return empresa
   }
 

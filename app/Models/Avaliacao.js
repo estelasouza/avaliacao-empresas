@@ -10,3 +10,4 @@ class Avaliacao extends Model {
 }
 
 module.exports = Avaliacao
+
