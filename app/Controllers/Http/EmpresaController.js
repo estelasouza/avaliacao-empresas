@@ -1,7 +1,7 @@
 'use strict'
 
 const Empresa = use('App/Models/Empresa')
-
+const Database = use('Database')
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
@@ -56,9 +56,9 @@ class EmpresaController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
-    const empresa = await Empresa.findOrFail(params.id)
-    console.log(empresa.with('avaliacao').fetch())
-    empresa = await empresa.query().with('avaliacao').fetch()
+    const empresa = await Empresa.query().where('id',params.id).with('avaliacao').fetch()
+    // console.log(Empresa.query().with('avaliacao').fetch())
+    // empresa = await empresa.query().with('avaliacao').fetch()
     // .findOrFail(params.empresa_id)
     return empresa
   }

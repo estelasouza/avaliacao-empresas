@@ -1,6 +1,5 @@
 'use strict'
 const Avaliacao = use('App/Models/Avaliacao')
-const Empresa = use('App/Models/Empresa')
 
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
@@ -21,7 +20,7 @@ class AvaliacaoController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-    const avalicoes = Avaliacao.query().with('empresa').fetch()
+    const avalicoes = Avaliacao.all()
     // await avalicoes.load('avaliacao')
     return avalicoes
   }
@@ -60,7 +59,7 @@ class AvaliacaoController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
-    const avaliacao = await Avaliacao.findOrFail(params.id)
+    const avaliacao = await Avaliacao.query().where('id',params.id).with('empresa').fetch()
     return avaliacao
   }
 
