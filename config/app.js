@@ -5,6 +5,10 @@ const Env = use('Env')
 
 module.exports = {
 
+
+  providers: [
+    '@adonisjs/cors/providers/CorsProvider'
+  ],
   /*
   |--------------------------------------------------------------------------
   | Application Name
