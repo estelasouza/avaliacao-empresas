@@ -20,7 +20,7 @@ class AvaliacaoController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
-    const avalicoes = Avaliacao.all()
+    const avalicoes = Avaliacao.query().paginate(1,10)
     // await avalicoes.load('avaliacao')
     return avalicoes
   }
